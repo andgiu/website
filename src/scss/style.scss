@@ -1,0 +1,38 @@
+$w: 100vw;
+$h: 100vh;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,body {
+
+  width: $w;
+  height: $h;
+  overflow: hidden;
+  background-color: #111;
+
+
+  #applicationm, #canvas-holder {
+    position: absolute;
+    width: $w;
+    height: $h;
+
+    canvas {
+
+      position: fixed;
+      width: $w;
+      height: $h;
+
+      -webkit-transform: translateZ(0px);
+      -moz-transform: translateZ(0px);
+      transform: translateZ(0px);
+
+
+    }
+
+  }
+
+}
