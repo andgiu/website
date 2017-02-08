@@ -25,7 +25,9 @@
     "howler": "^2.0.2",
     "pixi-filters": "^1.0.6",
     "pixi.js": "^4.3.4",
+    "proxy-observe": "0.0.21",
     "stats-js": "^1.0.0-alpha1",
+    "watch-object": "^1.1.2",
     "webfontloader": "^1.6.27"
   },
   "devDependencies": {

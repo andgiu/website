@@ -1,15 +1,13 @@
-import WebFont from 'webfontloader'
+import WebFont from 'webfontloader';
 
 /**
  * Web Font Loader Promise
  *
- * Manages a few aspects of the animation loop and provides callbacks
- * for things such as Tween.js
+ * Manages the loading of the font by @font-face or google fonts
  *
- * @data
- * 	tick : number of times render has been called
- * 	startTime : float ms of animation time start
- * 	currentTime : current float ms
+ * @constructor
+ * 	@param {}
+ *
  */
 
 export default class WebFontLoaderPromise  {
