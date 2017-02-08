@@ -1,24 +1,32 @@
+"use strict";
+
 import './scss/style.scss';
 
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+import Renderer from './app/renderer/Renderer';
+import WebFontLoaderPromise from './app/helpers/WebFontLoaderPromise';
 
-class App extends Component {
+class Application {
 
-  constructor(props) {
-    super(props);
+  constructor() {
+
+    Promise.all([
+      new WebFontLoaderPromise()
+    ]).then(
+      this.initRenderer
+    );
+
   }
 
-  componentDidMount() {
-    
+
+  loadAssets() {
+
   }
 
-  render() {
-    return(
-      <div id="canvas-holder" ref="webgl" />
-    )
+  initRenderer() {
+
+  
   }
 
 }
 
-ReactDOM.render(<App />, document.getElementById('application'));
+const App = new Application();
