@@ -1,8 +1,11 @@
 import * as PIXI from 'pixi.js';
 import RendererStore from '../stores/RendererStore';
 import AnimationStore from '../stores/AnimationStore';
+import Stats from 'stats.js';
+
 
 let renderables = new Set();
+let stats = new Stats();
 
 export default class Renderer extends PIXI.WebGLRenderer {
 
@@ -15,6 +18,9 @@ export default class Renderer extends PIXI.WebGLRenderer {
     RendererStore.set('resolution', this.resolution);
     RendererStore.set('stageCenter', new PIXI.Point(args[0] / 2, args[1] / 2));
     RendererStore.set('renderer', this);
+
+    // Add stats
+    document.body.appendChild(stats.dom);
 
     this.resizeHandler();
     this.start();
@@ -52,12 +58,17 @@ export default class Renderer extends PIXI.WebGLRenderer {
    * @return {null}
    */
   animate() {
+
+    stats.begin();
+
     this.renderRenderables();
 
     if(this.active) {
       window.requestAnimationFrame(this.animate.bind(this));
       AnimationStore.emitChange();
     }
+
+    stats.end();
   }
 
   /**

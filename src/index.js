@@ -2,9 +2,11 @@
 
 import './scss/style.scss';
 
+import { Globals } from './app/config/Config'
 import Renderer from './app/renderer/Renderer';
 import WebFontLoaderPromise from './app/helpers/WebFontLoaderPromise';
 import Stage from './app/Stage';
+
 
 class Application {
 
@@ -30,7 +32,7 @@ class Application {
   initRenderer() {
 
 
-    let renderer = new Renderer(1280,720,{
+    let renderer = new Renderer(Globals.stageWidth,Globals.stageHeight,{
 
       resolution:   window.devicePixelRatio || 1,
       antialias:    true,
@@ -39,17 +41,22 @@ class Application {
 
     });
 
-    let stage = new Stage(1280,720);
+    let stage = new Stage();
     renderer.addRenderable(stage);
 
     document.getElementById('application').appendChild(renderer.view);
 
   }
 
+  /**
+   * Error manager
+   * @return {null}
+   */
   onErrorHandler(e) {
     throw(e);
   }
 
 }
 
+window.Globals = Globals;
 const App = new Application();

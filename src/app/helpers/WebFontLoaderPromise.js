@@ -1,7 +1,8 @@
 import WebFont from 'webfontloader';
 
 /**
- * Web Font Loader Promise
+ * Promise
+ * Web Font Loader
  *
  * Manages the loading of the font by @font-face or google fonts
  *
@@ -20,7 +21,7 @@ export default class WebFontLoaderPromise  {
 
         WebFont.load({
           google:{
-            families:['Montserrat']
+            families: Globals.fontList
           },
           active: resolve
         })

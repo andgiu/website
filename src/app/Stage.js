@@ -8,6 +8,17 @@ export default class Stage extends StageManager {
 
   }
 
+  componentWillMount() {
+    super.componentWillMount();
+
+    this.ready();
+  }
+
+  componentDidMount() {
+    super.componentDidMount();
+
+  }
+
 
 
 }
