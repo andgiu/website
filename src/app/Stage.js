@@ -23,8 +23,8 @@ export default class Stage extends PIXI.Container {
 
   componentWillMount() {
 
-    __noiseFilter = this.FilterManager.addNoiseFilter(0.5,.05,[1200,500]);
-    console.log(this.filters);
+    //__noiseFilter = this.FilterManager.addNoiseFilter(0.5,.035,[1200,1200]);
+
 
     this.componentDidMount();
   }
@@ -51,7 +51,7 @@ export default class Stage extends PIXI.Container {
   animate(data) {
 
     if(__noiseFilter)
-      __noiseFilter.uniforms.rand = Math.random();
+      __noiseFilter.rand = Math.random();
 
   }
 

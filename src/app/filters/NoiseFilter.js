@@ -5,6 +5,7 @@ export default class NoiseFilter extends PIXI.Filter {
   constructor(...args) {
     super(null, noiseFrag);
 
+
     this.uniforms.rand = args[0] || 1.5;
     this.uniforms.strength = args[1] || 0,25;
     this.uniforms.dimensions = args[2] || [0,0,0,0];
@@ -16,6 +17,7 @@ export default class NoiseFilter extends PIXI.Filter {
   }
 
   set rand(value) {
+    this.dirty = true;
     this.uniforms.rand = value;
   }
 
@@ -24,6 +26,7 @@ export default class NoiseFilter extends PIXI.Filter {
   }
 
   set strength(value) {
+    this.dirty = true;
     this.uniforms.strength = value;
   }
 

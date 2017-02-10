@@ -1,4 +1,5 @@
 import NoiseFilter from './NoiseFilter';
+import pixiFilters from 'pixi-filters';
 
 export default class FilterManager {
 
@@ -15,7 +16,7 @@ export default class FilterManager {
   }
 
   /**
-   * Add the filter to the filter list
+   * Add the noise filter to the filter list
    * and update the container filters property
    * @param {...args} arguments
    *  rand: (1f) 1.5
@@ -31,6 +32,24 @@ export default class FilterManager {
     this.updateFilterList();
     return filter;
 
+  }
+
+  /**
+   * Add the noise filter to the filter list
+   * and update the container filters property
+   * @param {...args} arguments
+   *  rand: (1f) 1.5
+   *  strength: (1f) 0.25
+   *  dimensions: (4fv) [0,0,0,0]
+   * @returns {filter}
+   */
+  addGlowFilter(...args) {
+
+    let filter = new pixiFilters.BloomFilter();
+    filter.blur = args[0] || 2;
+
+    this.updateFilterList();
+    return filter;
   }
 
   /**
