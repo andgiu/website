@@ -25,7 +25,7 @@ module.exports = {
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
-    //new CopyWebpackPlugin([{from:'src/img', to:'img'}]),
+    new CopyWebpackPlugin([{from:'src/shaders', to:'shaders'}]),
     //new CopyWebpackPlugin([{from:'src/fonts', to:'fonts'}]),
     //new CopyWebpackPlugin([{from:'src/audio', to:'audio'}]),
     new webpack.DefinePlugin({

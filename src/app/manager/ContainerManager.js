@@ -1,4 +1,4 @@
-import * as PIXI from 'pixi.js';
+import AdvancedContainer from '../displayobjects/AdvancedContainer';
 
 /**
  * Stage Manager Class
@@ -8,7 +8,7 @@ import * as PIXI from 'pixi.js';
  * 	@param {}
  */
 
-export default class StageManager extends PIXI.Container {
+export default class ContainerManager extends AdvancedContainer {
 
   constructor(...args) {
     super(...args);
@@ -18,13 +18,24 @@ export default class StageManager extends PIXI.Container {
       ready:              false,
       active:             false,
       built:              false,
+      drawn:              false,
       isTransitionIn:     false,
       isTransitionOut:    false,
       destroyable:        false
 
     }
 
+    /**
+     * Define internal functions
+     */
+    this.componentWillMount = this.componentWillMount.bind(this);
+    this.componentDidMount = this.componentDidMount.bind(this);
+    this.doTransitionIn = this.doTransitionIn.bind(this);
+    this.doTransitionOut = this.doTransitionOut.bind(this);
+    this.doTransitionInComplete = this.doTransitionInComplete.bind(this);
+    this.doTransitionOutComplete = this.doTransitionOutComplete.bind(this);
     this.componentWillMount();
+
   }
 
   /**
@@ -61,8 +72,7 @@ export default class StageManager extends PIXI.Container {
   }
 
   /**
-   * Fired when the unmount function is called
-   * Automatically set the active state to false
+   * Fired when the transitionIn function is complete
    * @return {null}
    */
   doTransitionInComplete() {
@@ -70,17 +80,36 @@ export default class StageManager extends PIXI.Container {
     this.state.active = true;
   }
 
+  /**
+   * Fired when the unmount function is called
+   * Automatically set the active state to false
+   * @return {null}
+   */
   doTransitionOut() {
     this.state.isTransitionOut = true;
   }
 
+  /**
+   * Fired when the transitionOut function is complete
+   * and if the displayobject ha the destroyable attribute set to true
+   * it will destroy the displayobject
+   * @return {null}
+   */
   doTransitionOutComplete() {
     this.state.isTransitionOut = false;
     if(this.destroyable) this.destroyComponent();
   }
 
   /**
-   * Call this function when the Component is ready
+   * Fired when built function is called
+   * @return {null}
+   */
+  draw() {
+
+  }
+
+  /**
+   * Call this function once the Component is ready
    * it will fire the componentDidMount function
    * @return {null}
    */
@@ -90,17 +119,27 @@ export default class StageManager extends PIXI.Container {
   }
 
   /**
-   * Call this function when the Component is built
-   * it will fire the doTransitionIn function
+   * Call this function once the Component is built
+   * it will fire the draw function
    * @return {null}
    */
   built() {
     this.state.built = true;
+    this.draw();
+  }
+
+  /**
+   * Call this function once the Component has been drawn
+   * it will fire the doTransitionIn function
+   * @return {null}
+   */
+  drawn() {
+    this.state.drawn = true;
     this.doTransitionIn();
   }
 
   /**
-   * Call this function when the you want to unmount the Component
+   * Call this function once  you want to unmount the Component
    * If the destroyable attribute is set to true the destroy function
    * is called once the doTransitionOutComplete is fired
    * @return {null}

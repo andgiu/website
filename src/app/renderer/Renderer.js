@@ -1,4 +1,3 @@
-import * as PIXI from 'pixi.js';
 import RendererStore from '../stores/RendererStore';
 import AnimationStore from '../stores/AnimationStore';
 import Stats from 'stats.js';
@@ -121,6 +120,7 @@ export default class Renderer extends PIXI.WebGLRenderer {
    * @return {null}
    */
   renderRenderables() {
+
 
     for (let entry of renderables) {
       this.render(entry);

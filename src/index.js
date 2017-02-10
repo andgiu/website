@@ -1,6 +1,7 @@
 "use strict";
 
 import './scss/style.scss';
+import * as PIXI from 'pixi.js';
 
 import { Globals } from './app/config/Config'
 import Renderer from './app/renderer/Renderer';
@@ -30,7 +31,6 @@ class Application {
    * @return {null}
    */
   initRenderer() {
-
 
     let renderer = new Renderer(Globals.stageWidth,Globals.stageHeight,{
 
