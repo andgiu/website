@@ -25,7 +25,7 @@ module.exports = {
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
-    new CopyWebpackPlugin([{from:'src/shaders', to:'shaders'}]),
+    //new CopyWebpackPlugin([{from:'src/shaders', to:'shaders'}]),
     //new CopyWebpackPlugin([{from:'src/fonts', to:'fonts'}]),
     //new CopyWebpackPlugin([{from:'src/audio', to:'audio'}]),
     new webpack.DefinePlugin({
@@ -47,6 +47,9 @@ module.exports = {
         query: {
           "presets": ["react", "es2015", "stage-0", "react-hmre"]
         }
+      },
+      {
+        test: /\.(glsl|vs|fs)$/, loader: 'shader'
       },
       {
         test: /\.jpe?g$|\.gif$|\.png$|\.webm$|\.mp3$/i,
