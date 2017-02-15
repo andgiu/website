@@ -1,8 +1,5 @@
-import ContainerManager from '../manager/ContainerManager';
-import FilterManager from '../filters/FilterManager';
+import ContainerManager from '../displayobjects/AdvancedContainer';
 import AnimationStore from '../stores/AnimationStore';
-
-let __glowFilter;
 
 export default class PreloaderView extends ContainerManager {
 
@@ -16,25 +13,23 @@ export default class PreloaderView extends ContainerManager {
   componentWillMount() {
     super.componentWillMount();
 
-    this.FilterManager = new FilterManager(this,new PIXI.Rectangle(0,0,window.innerWidth,window.innerHeight));
 
     this.ready();
   }
 
   componentDidMount() {
 
-    __glowFilter = this.FilterManager.addGlowFilter(.2);
-    //this.filters = null;
 
     this.built();
   }
 
   draw() {
 
-    this.drawTriangle(120);
+    //this.drawTriangle(120);
     this.drawn();
   }
 
+  /*
   drawTriangle(length, x, y) {
 
     const h = length * (Math.sqrt(3)/2);
@@ -51,10 +46,11 @@ export default class PreloaderView extends ContainerManager {
 
     this.addChild(graphics);
   }
+  */
 
   animate() {
 
-  
+
   }
 
   doTransitionIn() {

@@ -1,5 +1,5 @@
 import NoiseFilter from './NoiseFilter';
-import pixiFilters from 'pixi-filters';
+
 
 export default class FilterManager {
 
@@ -45,11 +45,7 @@ export default class FilterManager {
    */
   addGlowFilter(...args) {
 
-    let filter = new pixiFilters.BloomFilter();
-    filter.blur = args[0] || 2;
 
-    this.updateFilterList();
-    return filter;
   }
 
   /**
