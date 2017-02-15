@@ -25,6 +25,20 @@ export default class PreloaderView extends ContainerManager {
 
   draw() {
 
+    let text = new PIXI.Text('This is a pixi text'.toUpperCase(),
+    {
+      fontFamily : 'Montserrat',
+      fontSize: 10,
+      fill : 0xffffff,
+      align : 'center',
+      letterSpacing: 1
+    });
+
+    text.anchor.set(.5);
+    text.position.x = window.innerWidth / 2;
+    text.position.y = window.innerHeight / 2;;
+    this.addChild(text);
+
     //this.drawTriangle(120);
     this.drawn();
   }
