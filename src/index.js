@@ -37,7 +37,7 @@ class Application {
       resolution:   window.devicePixelRatio || 1,
       antialias:    true,
       autoResize:   true,
-      transparent:  true
+      transparent:  false
 
     });
 
