@@ -1,12 +1,5 @@
-// Author @patriciogv - 2015
-// http://patriciogonzalezvivo.com
-
-
 precision mediump float;
-
-
 uniform vec2 u_resolution;
-uniform vec2 u_mouse;
 uniform float u_time;
 
 float random (in vec2 _st) {
@@ -15,8 +8,7 @@ float random (in vec2 _st) {
         43758.5453123);
 }
 
-// Based on Morgan McGuire @morgan3d
-// https://www.shadertoy.com/view/4dS3Wd
+
 float noise (in vec2 _st) {
     vec2 i = floor(_st);
     vec2 f = fract(_st);
@@ -67,17 +59,18 @@ void main() {
     vec3 color = vec3(0.0);
 
     vec2 q = vec2(0.);
-    q.x = fbm( st + 0.00*u_time);
+    q.x = fbm( st + sin(.25 * u_time));
     q.y = fbm( st + vec2(1.0));
 
     vec2 r = vec2(0.);
     r.x = fbm( st + 1.0*q + vec2(1.7,9.2)+ 0.15*u_time );
     r.y = fbm( st + 1.0*q + vec2(8.3,2.8)+ 0.126*u_time);
 
-    float f = pattern(st+r);
+    //float f = pattern(st+r);
+    float f = fbm(st+r);
 
-    color = mix(vec3(0.101961,0.619608,0.666667),
-                vec3(0.666667,0.666667,0.498039),
+    color = mix(vec3(0.0),
+                vec3(0.1666667,0.666667,0.498039),
                 clamp((f*f)*4.0,0.0,1.0));
 
     color = mix(color,
@@ -85,8 +78,11 @@ void main() {
                 clamp(length(q),0.0,1.0));
 
     color = mix(color,
-                vec3(0.666667,1,1),
+                vec3(0.1666667,0.1,0.1),
                 clamp(length(r.x),0.0,1.0));
 
-    gl_FragColor = vec4((f*f*f+.6*f*f+.5*f)*color,1.);
+    gl_FragColor = vec4((f*f*f+.6*f*f+.85*f)*color,1.);
+    gl_FragColor = gl_FragColor * vec4(.87);
+
+
 }

@@ -1,4 +1,5 @@
 import NoiseFilter from './NoiseFilter';
+import SmokeFilter from './SmokeFilter';
 
 
 export default class FilterManager {
@@ -7,6 +8,7 @@ export default class FilterManager {
 
     this.filterList = new Set();
     this.container = container;
+
     if(filterArea) this.container.filterArea = filterArea;
 
     this.addFilter = this.addFilter.bind(this);
@@ -28,23 +30,23 @@ export default class FilterManager {
 
     let filter = new NoiseFilter(...args);
     this.addFilter(filter);
-
-    this.updateFilterList();
     return filter;
 
   }
 
   /**
-   * Add the noise filter to the filter list
+   * Add the smoke filter to the filter list
    * and update the container filters property
    * @param {...args} arguments
-   *  rand: (1f) 1.5
-   *  strength: (1f) 0.25
-   *  dimensions: (4fv) [0,0,0,0]
+   *  u_time: time
+   *  u_resolution: (2fv) [1280,720] Canvas resolution
    * @returns {filter}
    */
-  addGlowFilter(...args) {
+  addSmokeFilter(...args) {
 
+    let filter = new SmokeFilter(...args);
+    this.addFilter(filter);
+    return filter;
 
   }
 
