@@ -4,16 +4,25 @@ import FilterManager from './filters/FilterManager';
 import PreloaderView from './view/PreloaderView';
 
 
+/*
+ * View List
+ */
 
 let _preloader;
-let _smoke;
+
+/*
+ * Filter List
+ */
+
+let f__noise;
 
 export default class Stage extends PIXI.Container {
 
   constructor(...args) {
     super(...args);
 
-    //this.FilterManager = new FilterManager(this,new PIXI.Rectangle(0,0,window.innerWidth,window.innerHeight));
+    this.active = false;
+    this.FilterManager = new FilterManager(this,Globals.getWindowRectangle);
 
     RendererStore.addChangeListener(this.resize.bind(this));
     AnimationStore.addChangeListener(this.animate.bind(this));
@@ -21,16 +30,22 @@ export default class Stage extends PIXI.Container {
   }
 
   componentWillMount() {
-    //_smoke = this.FilterManager.addSmokeFilter();
+
+    f__noise = this.FilterManager.addNoiseFilter();
+
     this.componentDidMount();
   }
 
   componentDidMount() {
 
     _preloader = new PreloaderView();
+
+
     this.addChild(_preloader);
 
+    this.active = true;
     RendererStore.emitChange();
+
   }
 
   onLoad(loader,res) {
@@ -40,18 +55,17 @@ export default class Stage extends PIXI.Container {
 
   resize(renderer) {
 
-    //this.FilterManager.updateFilterArea(new PIXI.Rectangle(0,0,window.innerWidth,window.innerHeight));
-
+      this.FilterManager.updateFilterArea(Globals.getWindowRectangle());
   }
 
   animate(data) {
 
-    /*
-    if(_smoke) {
-      _smoke.uniforms.u_resolution = [window.innerWidth,window.innerHeight];
-      _smoke.uniforms.u_time += .1;
+    if(this.active) {
+
+      f__noise.rand = Math.random();
+      
+
     }
-    */
 
   }
 

@@ -37,7 +37,8 @@ class Application {
       resolution:   window.devicePixelRatio || 1,
       antialias:    true,
       autoResize:   true,
-      transparent:  false
+      transparent:  false,
+      backgroundColor: Globals.color.LIGHTGRAY
 
     });
 

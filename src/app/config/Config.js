@@ -6,6 +6,7 @@ export const Globals = {
   color: {
     WHITE:      0xffffff,
     LIGHTGRAY:  0xf0f0f0,
+    DARKGRAY:   0x121212,
     RED:        0xe01818
   },
   getWindowRectangle: function() {
