@@ -1,7 +1,6 @@
 import AdvancedContainer from '../displayobjects/AdvancedContainer';
 import AnimationStore from '../stores/AnimationStore';
-import DisplacementMap from '../fx/DisplacementMap';
-import frag from '../filters/shaders/smoke.fs';
+
 
 let _displacementSprite;
 let _displacementFilter;
@@ -19,12 +18,6 @@ export default class PreloaderView extends AdvancedContainer {
   componentWillMount() {
     super.componentWillMount();
 
-    _displacementSprite = new DisplacementMap();
-
-
-    this.addChild(_displacementSprite);
-
-
     this.ready();
   }
 
@@ -36,6 +29,7 @@ export default class PreloaderView extends AdvancedContainer {
 
   draw() {
 
+    /*
     _text = new PIXI.Text('This is a pixi text'.toUpperCase(),
     {
       fontFamily : 'Montserrat',
@@ -49,15 +43,7 @@ export default class PreloaderView extends AdvancedContainer {
     _text.position.x = window.innerWidth / 2;
     _text.position.y = window.innerHeight / 2;;
     this.addChild(_text);
-
-    console.log(_displacementSprite._texture);
-
-    //_displacementFilter = new PIXI.filters.DisplacementFilter(_displacementSprite,1);
-    //this.filterArea = Globals.getWindowRectangle();
-    //this.filters = [_displacementFilter];
-
-    //this.drawTriangle(120);
-    this.drawn();
+    */
   }
 
   /*
@@ -81,12 +67,7 @@ export default class PreloaderView extends AdvancedContainer {
 
   animate() {
 
-    if(_displacementSprite) _displacementSprite.update();
-    if(_displacementFilter) {
 
-      //_displacementFilter.uniforms.u_time += .1;
-
-    }
 
   }
 
