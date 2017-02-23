@@ -6,8 +6,8 @@ export default class NoiseFilter extends PIXI.Filter {
     super(null, noiseFrag);
 
     this.uniforms.rand = args[0] || 1.5;
-    this.uniforms.strength = args[1] || 0.05;
-    this.uniforms.dimensions = args[2] || [1280,720,0,0];
+    this.uniforms.strength = args[1] || 0.025;
+    this.uniforms.dimensions = args[2] || [2560,1280,0,0];
 
   }
 

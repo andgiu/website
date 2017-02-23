@@ -15,6 +15,9 @@ let _preloader;
  */
 
 let f__noise;
+let f__smoke;
+let f__cmatrix;
+let f__hcontrast;
 
 export default class Stage extends PIXI.Container {
 
@@ -31,8 +34,17 @@ export default class Stage extends PIXI.Container {
 
   componentWillMount() {
 
-    f__noise = this.FilterManager.addNoiseFilter();
 
+    f__smoke = this.FilterManager.addSmokeFilter();
+    //f__noise = this.FilterManager.addNoiseFilter();
+    f__cmatrix = this.FilterManager.addColorMatrixFilter();
+    f__hcontrast = this.FilterManager.addHighContrastFilter();
+
+    //f__cmatrix.desaturate();
+    //f__cmatrix.polaroid(1);
+    f__cmatrix.contrast(.01,true);
+
+    console.log(this.filters);
     this.componentDidMount();
   }
 
@@ -55,15 +67,19 @@ export default class Stage extends PIXI.Container {
 
   resize(renderer) {
 
-      this.FilterManager.updateFilterArea(Globals.getWindowRectangle());
+      const rect = Globals.getWindowRectangle();
+
+      this.FilterManager.updateFilterArea(rect);
+      f__smoke.res = [rect.width, rect.height];
+      //f__noise.dimensions = [rect.width * 2, rect.height * 2];
   }
 
   animate(data) {
 
     if(this.active) {
 
-      f__noise.rand = Math.random();
-      
+      f__smoke.time += .025;
+      f__hcontrast.time += .01;
 
     }
 

@@ -38,7 +38,7 @@ class Application {
       antialias:    true,
       autoResize:   true,
       transparent:  false,
-      backgroundColor: Globals.color.LIGHTGRAY
+      backgroundColor: Globals.color.DARKGRAY
 
     });
 

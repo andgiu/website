@@ -1,45 +1,32 @@
 const fragment = require('./shaders/smoke.fs');
 
-export default class NoiseFilter extends PIXI.Filter {
+export default class SmokeFilter extends PIXI.Filter {
 
   constructor(...args) {
     super(null, fragment);
-
-    /*
-    this.uniforms.rand = args[0] || 1.5;
-    this.uniforms.strength = args[1] || 0.25;
-    this.uniforms.dimensions = args[2] || [1280,1280,0,0];
-    */
 
     this.uniforms.u_time = args[0] || 0.25;
     this.uniforms.u_resolution = args[1] || [1280,1280];
     this.uniforms.u_mouse = args[2] || [0,0];
   }
 
-  get rand() {
-    return this.uniforms.rand;
+  get time() {
+    return this.uniforms.u_time;
   }
 
-  set rand(value) {
+  set time(value) {
     this.dirty = true;
-    this.uniforms.rand = value;
+    this.uniforms.u_time = value;
   }
 
-  get strength() {
-    return this.uniforms.strength;
+  get res() {
+    return this.uniforms.u_resolution;
   }
 
-  set strength(value) {
+  set res(value) {
     this.dirty = true;
-    this.uniforms.strength = value;
+    this.uniforms.u_resolution = value;
   }
 
-  get dimensions() {
-    return this.uniforms.dimensions;
-  }
-
-  set dimensions(arrayV4) {
-    this.uniforms.dimensions = arrayV4;
-  }
 
 }

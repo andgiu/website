@@ -1,6 +1,6 @@
 import NoiseFilter from './NoiseFilter';
 import SmokeFilter from './SmokeFilter';
-
+import HighContrast from './HighContrast';
 
 export default class FilterManager {
 
@@ -28,7 +28,7 @@ export default class FilterManager {
    */
   addNoiseFilter(...args) {
 
-    let filter = new NoiseFilter(...args);
+    const filter = new NoiseFilter(...args);
     this.addFilter(filter);
     return filter;
 
@@ -44,7 +44,23 @@ export default class FilterManager {
    */
   addSmokeFilter(...args) {
 
-    let filter = new SmokeFilter(...args);
+    const filter = new SmokeFilter(...args);
+    this.addFilter(filter);
+    return filter;
+
+  }
+
+  addColorMatrixFilter() {
+
+    const filter = new PIXI.filters.ColorMatrixFilter();
+    this.addFilter(filter);
+    return filter;
+
+  }
+
+  addHighContrastFilter(...args) {
+
+    const filter = new HighContrast(...args);
     this.addFilter(filter);
     return filter;
 
