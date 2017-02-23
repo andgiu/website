@@ -38,11 +38,11 @@ export default class Stage extends PIXI.Container {
     f__smoke = this.FilterManager.addSmokeFilter();
     //f__noise = this.FilterManager.addNoiseFilter();
     f__cmatrix = this.FilterManager.addColorMatrixFilter();
-    f__hcontrast = this.FilterManager.addHighContrastFilter();
+    //f__hcontrast = this.FilterManager.addHighContrastFilter();
 
     //f__cmatrix.desaturate();
     //f__cmatrix.polaroid(1);
-    f__cmatrix.contrast(.01,true);
+    //f__cmatrix.contrast(.01,true);
 
     console.log(this.filters);
     this.componentDidMount();
@@ -79,7 +79,7 @@ export default class Stage extends PIXI.Container {
     if(this.active) {
 
       f__smoke.time += .025;
-      f__hcontrast.time += .01;
+      //f__hcontrast.time += .01;
 
     }
 

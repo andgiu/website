@@ -1,9 +1,9 @@
-var noiseFrag = require('./shaders/noise.fs');
+const fragment = require('./shaders/noise.fs');
 
 export default class NoiseFilter extends PIXI.Filter {
 
   constructor(...args) {
-    super(null, noiseFrag);
+    super(null, fragment);
 
     this.uniforms.rand = args[0] || 1.5;
     this.uniforms.strength = args[1] || 0.025;

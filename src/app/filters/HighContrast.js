@@ -1,9 +1,9 @@
-var noiseFrag = require('./shaders/shaker.fs');
+const fragment = require('./shaders/highcontrast.fs');
 
 export default class HighContrast extends PIXI.Filter {
 
   constructor(...args) {
-    super(null, noiseFrag);
+    super(null, fragment);
 
     this.uniforms.rand = args[0] || 1.5;
     this.uniforms.blur = args[1] || [1,1];
