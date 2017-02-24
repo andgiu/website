@@ -25,7 +25,7 @@ export default class Stage extends PIXI.Container {
     super(...args);
 
     this.active = false;
-    this.FilterManager = new FilterManager(this,Globals.getWindowRectangle);
+    this.FilterManager = new FilterManager(this,Globals.getWindowRectangle());
 
     RendererStore.addChangeListener(this.resize.bind(this));
     AnimationStore.addChangeListener(this.animate.bind(this));
@@ -35,16 +35,15 @@ export default class Stage extends PIXI.Container {
   componentWillMount() {
 
 
-    f__smoke = this.FilterManager.addSmokeFilter();
+    //f__smoke = this.FilterManager.addSmokeFilter();
     //f__noise = this.FilterManager.addNoiseFilter();
-    f__cmatrix = this.FilterManager.addColorMatrixFilter();
-    //f__hcontrast = this.FilterManager.addHighContrastFilter();
+    //f__cmatrix = this.FilterManager.addColorMatrixFilter();
+    f__hcontrast = this.FilterManager.addHighContrastFilter();
 
     //f__cmatrix.desaturate();
     //f__cmatrix.polaroid(1);
-    //f__cmatrix.contrast(.01,true);
+    //f__cmatrix.contrast(.21,true);
 
-    console.log(this.filters);
     this.componentDidMount();
   }
 
@@ -69,8 +68,8 @@ export default class Stage extends PIXI.Container {
 
       const rect = Globals.getWindowRectangle();
 
-      this.FilterManager.updateFilterArea(rect);
-      f__smoke.res = [rect.width, rect.height];
+      //this.FilterManager.updateFilterArea(rect);
+      //f__smoke.res = [rect.width / 1, rect.height / 1];
       //f__noise.dimensions = [rect.width * 2, rect.height * 2];
   }
 
@@ -78,7 +77,7 @@ export default class Stage extends PIXI.Container {
 
     if(this.active) {
 
-      f__smoke.time += .025;
+      //f__smoke.time += .01;
       //f__hcontrast.time += .01;
 
     }

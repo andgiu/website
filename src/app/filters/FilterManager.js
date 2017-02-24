@@ -9,6 +9,7 @@ export default class FilterManager {
     this.filterList = new Set();
     this.container = container;
 
+    console.log(filterArea);
     if(filterArea) this.container.filterArea = filterArea;
 
     this.addFilter = this.addFilter.bind(this);
@@ -50,6 +51,12 @@ export default class FilterManager {
 
   }
 
+  /**
+   * Add the Color Matrix filter to the filter list
+   * and update the container filters property
+   * @param {matrix} colormatrix
+   * @returns {filter}
+   */
   addColorMatrixFilter() {
 
     const filter = new PIXI.filters.ColorMatrixFilter();
@@ -59,11 +66,9 @@ export default class FilterManager {
   }
 
   addHighContrastFilter(...args) {
-
     const filter = new HighContrast(...args);
     this.addFilter(filter);
     return filter;
-
   }
 
   /**

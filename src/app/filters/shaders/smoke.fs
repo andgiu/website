@@ -26,7 +26,7 @@ float noise (in vec2 _st) {
             (d - b) * u.x * u.y;
 }
 
-#define NUM_OCTAVES 4
+#define NUM_OCTAVES 6
 
 float fbm ( in vec2 _st) {
     float v = 0.0;
@@ -43,11 +43,36 @@ float fbm ( in vec2 _st) {
     return v;
 }
 
-float pattern( in vec2 p )
+
+float pattern2( in vec2 p )
 {
-  vec2 q = vec2( fbm( p + vec2(0.0,0.0) ),fbm( p + vec2(5.2,1.3) ) );
-  return fbm( p + 4.0 * q );
+  vec2 q = vec2( fbm( p + vec2(0.0,0.0) ),
+                 fbm( p + vec2(5.2,1.3) ) );
+
+  return fbm( p + 4.0*q );
 }
+
+float pattern3( in vec2 p )
+{
+    vec2 q = vec2( fbm( p + vec2(0.0,0.0) ),
+                   fbm( p + vec2(5.2,1.3) ) );
+
+    vec2 r = vec2( fbm( p + 4.0*q + vec2(1.7,9.2) ),
+                   fbm( p + 4.0*q + vec2(8.3,2.8) ) );
+
+    return fbm( p + 4.0*r );
+}
+
+float pattern4( in vec2 p, out vec2 q, out vec2 r )
+ {
+     q.x = fbm( p + vec2(0.0,0.0) );
+     q.y = fbm( p + vec2(5.2,1.3) );
+
+     r.x = fbm( p + 4.0*q + vec2(1.7,9.2) );
+     r.y = fbm( p + 4.0*q + vec2(8.3,2.8) );
+
+     return fbm( p + 4.0*r );
+ }
 
 void main() {
 
@@ -67,8 +92,8 @@ void main() {
     //float f = pattern(st+r);
     float f = fbm(st+r);
 
-    color = mix(vec3(0.666667,0.166667,0.498039),
-                vec3(0.1666667,0.666667,0.498039),
+    color = mix(vec3(0.666667,0.166667,0.898039),
+                vec3(0.1666667,0.796667,0.498039),
                 clamp((f*f)*4.0,0.0,1.0));
 
     color = mix(color,
@@ -76,12 +101,17 @@ void main() {
                 clamp(length(q),0.0,1.0));
 
     color = mix(color,
-                vec3(0.1666667,0.1,0.1),
+                vec3(0.1666667,0.1,0.166),
                 clamp(length(r.x),0.0,1.0));
 
 
+    color = mix(color,
+                vec3(0.2666667,0.2666667,0.1666667),
+                clamp(length(q.y),0.0,.23));
+
+
     gl_FragColor = vec4((f*f*f+.6*f*f+.85*f)*color,1.);
-    //gl_FragColor = gl_FragColor * vec4(.87);
+    gl_FragColor = gl_FragColor * vec4(1.25);
 
 
 }

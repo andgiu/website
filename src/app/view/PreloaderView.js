@@ -23,7 +23,10 @@ export default class PreloaderView extends AdvancedContainer {
 
   componentDidMount() {
 
+    let sprite = new PIXI.Sprite.fromImage('./img/test.jpg');
 
+
+    this.addChild(sprite);
     this.built();
   }
 

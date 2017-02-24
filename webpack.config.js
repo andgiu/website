@@ -27,7 +27,7 @@ module.exports = {
     new webpack.NoErrorsPlugin(),
     //new CopyWebpackPlugin([{from:'src/shaders', to:'shaders'}]),
     //new CopyWebpackPlugin([{from:'src/fonts', to:'fonts'}]),
-    //new CopyWebpackPlugin([{from:'src/audio', to:'audio'}]),
+    new CopyWebpackPlugin([{from:'src/img', to:'img'}]),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('development')
     })

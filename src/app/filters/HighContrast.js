@@ -1,4 +1,4 @@
-const fragment = require('./shaders/highcontrast.fs');
+const fragment = require('./shaders/test.fs');
 
 export default class HighContrast extends PIXI.Filter {
 
