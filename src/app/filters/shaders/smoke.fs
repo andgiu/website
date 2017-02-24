@@ -26,7 +26,7 @@ float noise (in vec2 _st) {
             (d - b) * u.x * u.y;
 }
 
-#define NUM_OCTAVES 6
+#define NUM_OCTAVES 8
 
 float fbm ( in vec2 _st) {
     float v = 0.0;
@@ -82,8 +82,8 @@ void main() {
 
     vec2 q = vec2(0.);
     q.x = fbm( st + sin(.25 * u_time));
-    //q.y = fbm( st + vec2(1.0));
-    q.y = fbm( st + vec2(1.0)) * q.x;
+    q.y = fbm( st + vec2(1.0));
+    //q.y = fbm( st + vec2(1.0)) * q.x;
 
     vec2 r = vec2(0.);
     r.x = fbm( st + 1.0*q + vec2(1.7,9.2)+ 0.15*u_time );
@@ -110,7 +110,7 @@ void main() {
                 clamp(length(q.y),0.0,.23));
 
 
-    gl_FragColor = vec4((f*f*f+.6*f*f+.85*f)*color,1.);
+    gl_FragColor = vec4((f*f*f+1.6*f*f+.85*f)*color,1.);
     gl_FragColor = gl_FragColor * vec4(1.25);
 
 

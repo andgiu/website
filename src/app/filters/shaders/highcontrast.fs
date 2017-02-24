@@ -5,7 +5,7 @@ void main (void)
 {
    float e = 2.718281828459045235360287471352;
    vec4 col = texture2D(uSampler, vTextureCoord);
-   vec3 k =   vec3(0.8,0.8,0.8);
+   vec3 k =   vec3(0.38,0.38,0.38);
    vec3 min = vec3(0.0,0.0,0.0);
    vec3 max = vec3(1.0,1.0,1.0);
    col.r = (1.0/(3.0+pow(e,(-k.r*((col.r*3.0)-1.0)*210.0)))*(max.r-min.r)+min.r);

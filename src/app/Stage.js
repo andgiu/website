@@ -35,14 +35,14 @@ export default class Stage extends PIXI.Container {
   componentWillMount() {
 
 
-    //f__smoke = this.FilterManager.addSmokeFilter();
-    //f__noise = this.FilterManager.addNoiseFilter();
+    f__smoke = this.FilterManager.addSmokeFilter();
+    //f__hcontrast = this.FilterManager.addHighContrastFilter();
     //f__cmatrix = this.FilterManager.addColorMatrixFilter();
-    f__hcontrast = this.FilterManager.addHighContrastFilter();
+    //f__noise = this.FilterManager.addNoiseFilter();
 
     //f__cmatrix.desaturate();
     //f__cmatrix.polaroid(1);
-    //f__cmatrix.contrast(.21,true);
+    //f__cmatrix.negative(true);
 
     this.componentDidMount();
   }
@@ -68,16 +68,18 @@ export default class Stage extends PIXI.Container {
 
       const rect = Globals.getWindowRectangle();
 
-      //this.FilterManager.updateFilterArea(rect);
-      //f__smoke.res = [rect.width / 1, rect.height / 1];
-      //f__noise.dimensions = [rect.width * 2, rect.height * 2];
+      this.FilterManager.updateFilterArea(rect);
+      f__smoke.res = [rect.width / 1, rect.height / 1];
+      //f__noise.dimensions = [rect.width * 1, rect.height * 1];
+      //f__cmatrix.resolution = 2;
   }
 
   animate(data) {
 
     if(this.active) {
 
-      //f__smoke.time += .01;
+      f__smoke.time += .01;
+      //f__noise.rand += Math.random();
       //f__hcontrast.time += .01;
 
     }
